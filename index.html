@@ -2,13 +2,206 @@
 <html lang="zh-CN">
 <head>
   <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#ff6b9a">
   <title>九九乘法口诀在线小游戏</title>
+  <style>
+    :root{--bg1:#f7fbff;--bg2:#fff7fb;--card:rgba(255,255,255,.92);--text:#1f2937;--muted:#667085;--line:#e6eaf2;--primary:#ff6b9a;--primary2:#5b8def;--ok:#16a34a;--bad:#ef4444;--warn:#f59e0b;--shadow:0 18px 55px rgba(31,41,55,.14);--radius:24px}
+    *{box-sizing:border-box}html{-webkit-text-size-adjust:100%;touch-action:manipulation}body{margin:0;min-height:100vh;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Microsoft YaHei",sans-serif;color:var(--text);background:radial-gradient(circle at 10% 10%,rgba(91,141,239,.18),transparent 34%),radial-gradient(circle at 90% 20%,rgba(255,107,154,.23),transparent 34%),linear-gradient(135deg,var(--bg1),var(--bg2));display:flex;justify-content:center;padding:18px env(safe-area-inset-right) 28px env(safe-area-inset-left)}
+    button,input{font:inherit}button{border:0;cursor:pointer;-webkit-tap-highlight-color:transparent;touch-action:manipulation}button:active{transform:translateY(1px) scale(.99)}.app{width:min(980px,100%)}.hero{text-align:center;margin:8px 0 16px}.hero h1{margin:0;font-size:clamp(28px,7vw,54px);letter-spacing:-1px}.hero p{margin:8px 0 0;color:var(--muted);font-size:15px}.grid{display:grid;grid-template-columns:1.1fr .9fr;gap:16px}.card{background:var(--card);border:1px solid rgba(255,255,255,.68);border-radius:var(--radius);box-shadow:var(--shadow);padding:18px;backdrop-filter:blur(12px)}.section-title{margin:0 0 12px;font-size:18px}.status{padding:10px 12px;border-radius:16px;background:#eef6ff;color:#2457a6;font-size:14px;margin:10px 0 0}.mode-row,.level-row{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;margin:10px 0}.level-row{grid-template-columns:repeat(3,1fr)}.pill{padding:12px 10px;border-radius:16px;background:white;color:var(--text);border:1px solid var(--line);font-weight:700}.pill.active{background:linear-gradient(135deg,var(--primary),#ff93b8);color:#fff;border-color:transparent}.primary{width:100%;padding:15px 18px;border-radius:18px;background:linear-gradient(135deg,var(--primary),#ff8fb6);color:#fff;font-size:18px;font-weight:800;box-shadow:0 14px 30px rgba(255,107,154,.28);margin-top:12px}.secondary{width:100%;padding:13px 16px;border-radius:16px;background:#eef2ff;color:#3858c7;font-weight:800;margin-top:10px}.danger{background:#fff1f2;color:#be123c}.scoreboard{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-bottom:14px}.scorebox{background:#fff;border:1px solid var(--line);border-radius:18px;padding:12px;text-align:center}.scorebox b{display:block;font-size:24px}.scorebox span{display:block;color:var(--muted);font-size:12px;margin-top:2px}.game{display:none}.question-wrap{text-align:center;padding:14px 0 8px}.question{font-size:clamp(44px,14vw,86px);font-weight:900;line-height:1.05;letter-spacing:-2px}.hint{min-height:28px;margin-top:10px;font-size:18px;font-weight:800}.hint.ok{color:var(--ok)}.hint.bad{color:var(--bad)}.answer-row{display:flex;gap:10px;margin:16px 0 10px}.answer-row input{flex:1;min-width:0;padding:16px 14px;border-radius:18px;border:2px solid var(--line);font-size:24px;font-weight:900;text-align:center;background:#fff}.answer-row input:focus{outline:0;border-color:var(--primary2);box-shadow:0 0 0 4px rgba(91,141,239,.14)}.answer-row button{width:118px;border-radius:18px;background:linear-gradient(135deg,var(--primary2),#7aa2ff);color:#fff;font-size:18px;font-weight:900}.keys{display:grid;grid-template-columns:repeat(5,1fr);gap:8px;margin-top:8px}.key{padding:14px 0;border-radius:16px;background:#fff;border:1px solid var(--line);font-weight:900;font-size:20px}.key.wide{grid-column:span 2}.key.submit{background:#e8fff1;color:#15803d}.key.clear{background:#fff7ed;color:#c2410c}.wrong-list{max-height:260px;overflow:auto;padding-right:4px}.wrong-item{display:flex;justify-content:space-between;gap:10px;align-items:center;background:#fff;border:1px solid var(--line);border-radius:16px;padding:10px 12px;margin:8px 0;font-size:14px}.wrong-item strong{font-size:16px}.empty{color:var(--muted);font-size:14px;line-height:1.6}.table{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-top:8px}.formula{padding:8px 6px;border-radius:12px;background:#fff;border:1px solid var(--line);text-align:center;font-weight:700;font-size:13px}.footer-note{text-align:center;color:var(--muted);font-size:12px;margin-top:12px}@media(max-width:760px){body{padding:12px 10px 24px}.grid{grid-template-columns:1fr}.hero h1{font-size:32px}.scoreboard{grid-template-columns:repeat(2,1fr)}.card{padding:14px;border-radius:22px}.mode-row,.level-row{grid-template-columns:1fr}.answer-row{position:sticky;bottom:8px;z-index:4;background:rgba(255,255,255,.72);padding:8px;border-radius:20px;backdrop-filter:blur(10px)}.answer-row button{width:96px}.keys{grid-template-columns:repeat(5,1fr)}.table{grid-template-columns:repeat(2,1fr)}}
+  </style>
 </head>
 <body>
-  <main>
-    <h1>九九乘法口诀在线小游戏</h1>
-    <p>项目已创建，等待替换正式游戏代码。</p>
+  <main class="app">
+    <header class="hero">
+      <h1>九九乘法口诀闯关</h1>
+      <p>练口诀、抢时间、复盘错题。适配 iPhone Safari 和手机竖屏。</p>
+    </header>
+
+    <section class="grid">
+      <div class="card setup" id="setupCard">
+        <h2 class="section-title">开始游戏</h2>
+        <div class="status" id="bootStatus">游戏脚本加载中……</div>
+
+        <h3 class="section-title" style="margin-top:18px">模式</h3>
+        <div class="mode-row">
+          <button class="pill active" type="button" data-mode="practice">练习模式</button>
+          <button class="pill" type="button" data-mode="challenge">60 秒挑战</button>
+        </div>
+
+        <h3 class="section-title" style="margin-top:18px">难度</h3>
+        <div class="level-row">
+          <button class="pill active" type="button" data-level="easy">1～5 入门</button>
+          <button class="pill" type="button" data-level="normal">1～9 标准</button>
+          <button class="pill" type="button" data-level="missing">缺数挑战</button>
+        </div>
+
+        <button class="primary" type="button" id="startBtn">开始练习</button>
+        <button class="secondary" type="button" id="reviewBtn">只看错题</button>
+        <p class="footer-note">最高分会保存在本机浏览器。若在 App 内预览无法开始，请用 Safari 打开。</p>
+      </div>
+
+      <div class="card game" id="gameCard">
+        <div class="scoreboard">
+          <div class="scorebox"><b id="score">0</b><span>得分</span></div>
+          <div class="scorebox"><b id="streak">0</b><span>连击</span></div>
+          <div class="scorebox"><b id="rightCount">0</b><span>答对</span></div>
+          <div class="scorebox"><b id="timer">--</b><span>时间</span></div>
+        </div>
+
+        <div class="question-wrap">
+          <div class="question" id="question">3 × 4 = ?</div>
+          <div class="hint" id="hint">输入答案后提交</div>
+        </div>
+
+        <form id="answerForm" autocomplete="off">
+          <div class="answer-row">
+            <input id="answer" inputmode="numeric" pattern="[0-9]*" placeholder="答案" autocomplete="off">
+            <button type="submit">提交</button>
+          </div>
+        </form>
+
+        <div class="keys" id="keys"></div>
+        <button class="secondary danger" type="button" id="stopBtn">结束本轮</button>
+      </div>
+
+      <aside class="card">
+        <h2 class="section-title">错题本</h2>
+        <div class="wrong-list" id="wrongList"><p class="empty">还没有错题。答错后会自动记录。</p></div>
+        <button class="secondary" type="button" id="clearWrongBtn">清空错题</button>
+
+        <h2 class="section-title" style="margin-top:18px">九九口诀表</h2>
+        <div class="table" id="formulaTable"></div>
+      </aside>
+    </section>
   </main>
+
+  <script>
+  (function(){
+    'use strict';
+    var $=function(id){return document.getElementById(id)};
+    var state={mode:'practice',level:'easy',score:0,streak:0,right:0,wrong:0,time:60,running:false,current:null,wrongList:[],timerId:null,best:0};
+    var store={get:function(k,d){try{var v=localStorage.getItem(k);return v?JSON.parse(v):d}catch(e){return d}},set:function(k,v){try{localStorage.setItem(k,JSON.stringify(v))}catch(e){}}};
+
+    function bindTap(el,fn){
+      var last=0;
+      function run(e){var now=Date.now();if(now-last<280)return;last=now;if(e&&e.cancelable)e.preventDefault();fn(e)}
+      el.addEventListener('click',run,false);
+      if(window.PointerEvent)el.addEventListener('pointerup',run,false);
+      else el.addEventListener('touchend',run,{passive:false});
+    }
+
+    function rand(max){return Math.floor(Math.random()*max)+1}
+    function maxNum(){return state.level==='easy'?5:9}
+    function makeQuestion(){
+      var m=maxNum(),a=rand(m),b=rand(m),type='answer';
+      if(state.level==='missing')type=['left','right'][Math.floor(Math.random()*2)];
+      var text,answer;
+      if(type==='left'){text='? × '+b+' = '+(a*b);answer=a}
+      else if(type==='right'){text=a+' × ? = '+(a*b);answer=b}
+      else{text=a+' × '+b+' = ?';answer=a*b}
+      state.current={a:a,b:b,text:text,answer:answer,type:type};
+      $('question').textContent=text;
+      $('answer').value='';
+      $('answer').focus();
+    }
+
+    function updateScore(){
+      $('score').textContent=state.score;
+      $('streak').textContent=state.streak;
+      $('rightCount').textContent=state.right;
+      $('timer').textContent=state.mode==='challenge'?state.time:'--';
+    }
+
+    function setHint(text,cls){var h=$('hint');h.textContent=text;h.className='hint '+(cls||'')}
+
+    function start(){
+      clearInterval(state.timerId);
+      state.score=0;state.streak=0;state.right=0;state.wrong=0;state.time=60;state.running=true;
+      $('setupCard').style.display='none';$('gameCard').style.display='block';
+      setHint('输入答案后提交','');updateScore();makeQuestion();
+      if(state.mode==='challenge'){
+        state.timerId=setInterval(function(){state.time--;updateScore();if(state.time<=0)finish()},1000);
+      }
+    }
+
+    function finish(){
+      clearInterval(state.timerId);state.running=false;
+      state.best=Math.max(state.best,state.score);store.set('jiujiu_best',state.best);
+      $('setupCard').style.display='block';$('gameCard').style.display='none';
+      $('bootStatus').textContent='本轮结束：得分 '+state.score+'，答对 '+state.right+' 题，错 '+state.wrong+' 题，最高分 '+state.best+'。';
+      renderWrong();
+    }
+
+    function submit(){
+      if(!state.running||!state.current)return;
+      var raw=$('answer').value.replace(/[^0-9]/g,'');
+      if(raw===''){setHint('先输入一个答案','bad');return}
+      var val=parseInt(raw,10),ok=val===state.current.answer;
+      if(ok){
+        state.right++;state.streak++;state.score+=10+Math.min(state.streak,10)*2;
+        setHint('答对了！连击 +'+state.streak,'ok');
+      }else{
+        state.wrong++;state.streak=0;state.score=Math.max(0,state.score-2);
+        var item={text:state.current.text,your:val,right:state.current.answer,at:new Date().toLocaleString()};
+        state.wrongList.unshift(item);state.wrongList=state.wrongList.slice(0,30);store.set('jiujiu_wrong',state.wrongList);
+        setHint('错了，正确答案是 '+state.current.answer,'bad');renderWrong();
+      }
+      updateScore();
+      setTimeout(makeQuestion, ok?260:650);
+    }
+
+    function renderWrong(){
+      var box=$('wrongList');box.innerHTML='';
+      if(!state.wrongList.length){box.innerHTML='<p class="empty">还没有错题。答错后会自动记录。</p>';return}
+      state.wrongList.forEach(function(w){
+        var div=document.createElement('div');div.className='wrong-item';
+        div.innerHTML='<div><strong>'+escapeHtml(w.text)+'</strong><br><span>你的答案：'+w.your+'</span></div><b>'+w.right+'</b>';
+        box.appendChild(div);
+      });
+    }
+
+    function escapeHtml(s){return String(s).replace(/[&<>"']/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]})}
+
+    function renderKeys(){
+      var box=$('keys'),keys=['1','2','3','4','5','6','7','8','9','0','清空','删除','提交'];box.innerHTML='';
+      keys.forEach(function(k){var b=document.createElement('button');b.type='button';b.className='key';b.textContent=k;if(k==='清空')b.className+=' clear wide';if(k==='提交')b.className+=' submit wide';bindTap(b,function(){
+        if(k==='清空')$('answer').value='';else if(k==='删除')$('answer').value=$('answer').value.slice(0,-1);else if(k==='提交')submit();else $('answer').value+=k;$('answer').focus();
+      });box.appendChild(b)});
+    }
+
+    function renderTable(){
+      var box=$('formulaTable');box.innerHTML='';
+      for(var i=1;i<=9;i++){for(var j=1;j<=i;j++){var d=document.createElement('div');d.className='formula';d.textContent=j+'×'+i+'='+(i*j);box.appendChild(d)}}
+    }
+
+    function chooseButtons(selector,key,labelMap){
+      Array.prototype.forEach.call(document.querySelectorAll(selector),function(btn){bindTap(btn,function(){
+        Array.prototype.forEach.call(document.querySelectorAll(selector),function(x){x.classList.remove('active')});
+        btn.classList.add('active');state[key]=btn.getAttribute('data-'+key);
+        if(key==='mode')$('startBtn').textContent=labelMap[state.mode]||'开始';
+      })});
+    }
+
+    function reviewOnly(){
+      var msg=state.wrongList.length?'已打开错题本，可根据右侧记录复盘。':'目前没有错题，先开始一轮练习。';
+      $('bootStatus').textContent=msg;renderWrong();
+    }
+
+    function init(){
+      state.wrongList=store.get('jiujiu_wrong',[]);state.best=store.get('jiujiu_best',0);
+      $('bootStatus').textContent='游戏已就绪。点“开始练习”即可进入。历史最高分：'+state.best;
+      chooseButtons('[data-mode]','mode',{practice:'开始练习',challenge:'开始挑战'});
+      chooseButtons('[data-level]','level',{});
+      bindTap($('startBtn'),start);bindTap($('stopBtn'),finish);bindTap($('reviewBtn'),reviewOnly);
+      bindTap($('clearWrongBtn'),function(){state.wrongList=[];store.set('jiujiu_wrong',[]);renderWrong();$('bootStatus').textContent='错题本已清空。'});
+      $('answerForm').addEventListener('submit',function(e){e.preventDefault();submit()});
+      $('answer').addEventListener('input',function(){this.value=this.value.replace(/[^0-9]/g,'')});
+      renderKeys();renderTable();renderWrong();updateScore();
+    }
+
+    if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',init);else init();
+  })();
+  </script>
 </body>
 </html>
