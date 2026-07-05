@@ -36,14 +36,18 @@
 
   function makeOptions(answer, max) {
     var set = {};
-    set[answer] = true;
+    set[String(answer)] = true;
     while (Object.keys(set).length < 4) {
       var delta = rand([-12, -9, -6, -4, -3, -2, 2, 3, 4, 5, 6, 8, 9, 12]);
       var next = answer + delta;
-      if (next > 0 && next <= max) set[next] = true;
-      set[randInt(1, 9) * randInt(1, 9)] = true;
+      if (next > 0 && next <= max) set[String(next)] = true;
+      if (Object.keys(set).length < 4) {
+        set[String(randInt(1, 9) * randInt(1, 9))] = true;
+      }
     }
-    return shuffle(Object.keys(set).slice(0, 4).map(function (n) { return Number(n); }));
+    var values = Object.keys(set).map(function (n) { return Number(n); });
+    if (values.indexOf(answer) === -1) values[0] = answer;
+    return shuffle(values).slice(0, 4);
   }
 
   function repeatedAddition(a, b) {
@@ -122,11 +126,12 @@
 
     if (type === 'factor') {
       var formula = String(a) + '×' + String(b);
-      var reversed = String(b) + '×' + String(a);
-      var options = [formula, reversed];
+      var options = [formula];
       while (options.length < 4) {
-        var item = String(randInt(2, 9)) + '×' + String(randInt(1, 9));
-        if (options.indexOf(item) === -1) options.push(item);
+        var x = randInt(2, 9);
+        var y = randInt(1, 9);
+        var item = String(x) + '×' + String(y);
+        if (x * y !== answer && options.indexOf(item) === -1) options.push(item);
       }
       return {
         id: 'factor-' + a + '-' + b + '-' + Date.now() + '-' + index,
@@ -136,9 +141,9 @@
         answer: formula,
         title: answer + ' 可以由哪两个数相乘得到？',
         subtitle: '找朋友题：选出正确的乘法算式。',
-        options: shuffle(options).slice(0, 4),
+        options: shuffle(options),
         visual: [],
-        explanation: a + ' × ' + b + ' = ' + answer + '，' + b + ' × ' + a + ' 也等于 ' + answer + '。'
+        explanation: a + ' × ' + b + ' = ' + answer + '。'
       };
     }
 
